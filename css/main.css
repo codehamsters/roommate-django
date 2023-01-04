@@ -1,0 +1,186 @@
+div.viewport-overlay{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div.viewport-overlay div.workspace{
+    max-width: 1600px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(var(--bg));
+    display: flex;
+    flex-direction: row;
+}
+
+div.viewport-overlay div.workspace aside.roomlist{
+    min-width: 360px;
+    max-width: 480px;
+    max-height: 100%;
+    width: 33%;
+    position: relative;
+    background-color: rgb(var(--strong-bg));
+    border-right: 2px solid rgb(255, 255, 255, 0.1);
+}
+
+aside.roomlist .options-area{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+aside.roomlist .options-area section.left-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+aside.roomlist .options-area .profile-container{
+    height: 40px;
+    width: 40px;
+    background: rgb(var(--accent-primary), 0.2);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(var(--accent-primary));
+}
+
+aside.roomlist .options-area .app-name{
+    font-weight: 900;
+    font-size: 28px;
+    color: rgb(var(--accent-primary));
+    margin-left: 15px;
+}
+
+aside.roomlist .options-area .more-btn{
+    background: transparent;
+    color: rgb(var(--strong-fg));
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    border: 1px solid transparent;
+}
+
+aside.roomlist section.rooms-container{
+    border-top: 2px solid rgb(var(--strong-fg), 0.1);
+    padding: 4px;
+    overflow-y: auto;
+    height: calc(100% - 80px);
+}
+
+aside.roomlist section.rooms-container ul.roomlist{
+    list-style-type: none;   
+}
+
+aside.roomlist section.rooms-container ul.roomlist li{
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    padding: 16px;
+    border-radius: 12px;
+}
+
+aside.roomlist section.rooms-container ul.roomlist li:hover{
+    background: rgb(var(--bg));
+}
+
+aside.roomlist section.rooms-container ul.roomlist li.active{
+    background: rgb(var(--weak-bg));
+}
+
+aside.roomlist section.rooms-container ul.roomlist li.active:hover{
+    
+}
+
+section.rooms-container ul.roomlist li .room-icon-container{
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    border-radius: 30px;
+    background: rgb(var(--accent-primary), 0.2);
+    color: rgb(var(--accent-primary));
+}
+
+section.rooms-container ul.roomlist li .room-detailer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 6px 4px 6px 10px;
+}
+
+ul.roomlist li .room-detailer .about-room{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul.roomlist li .room-detailer .about-room span.room-name{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+ul.roomlist li .room-detailer .about-room span.timestamp{
+    font-size: 15px;
+    color: rgb(var(--fg));
+}
+
+ul.roomlist li .room-detailer .message{
+    font-size: 17px;
+    color: rgb(var(--fg));
+}
+
+aside.roomlist button.new-room-btn{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: rgb(var(--accent-primary));
+    align-items: center;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    width: 100px;
+    border-radius: 10px;
+    border: none;
+    border-top: 1px solid rgba(var(--strong-fg), 0.1);
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: 150ms ease-in-out;
+}
+
+aside.roomlist button.new-room-btn .circle{
+    height: 32px;
+    width: 32px;
+    border-radius: 16px;
+    background: rgb(var(--accent-primary), 0.1);
+    display: flex;
+    justify-content: center;
+    margin-right: 6px;
+    align-items: center;
+    font-size: 18px;
+}
+
+aside.roomlist button.new-room-btn span{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+aside.roomlist button.new-room-btn:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.5);
+}
+
+aside.roomlist button.new-room-btn:active{
+    background: rgba(var(--strong-fg), 0.1);
+}
