@@ -30,141 +30,22 @@
                 </section>
 
                 <section class="rooms-container">
-
+                    {% for room in rooms %}
                     <ul class="roomlist">
-                        <li class="active">
+                        <li class>
                             <section class="room-icon-container">
                                 <i class="far fa-comment-dots"></i>
                             </section>
                             <section class="room-detailer">
                                 <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li> 
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
-                                    <span class="timestamp">07:08PM</span>
-                                </div>
-                                <div class="message">Last Message here</div>
-                            </section>
-                        </li>
-                        <li>
-                            <section class="room-icon-container">
-                                <i class="far fa-comment-dots"></i>
-                            </section>
-                            <section class="room-detailer">
-                                <div class="about-room">
-                                    <span class="room-name">Sample Room</span>
+                                    <span class="room-name">{{room.name}} </span>
                                     <span class="timestamp">07:08PM</span>
                                 </div>
                                 <div class="message">Last Message here</div>
                             </section>
                         </li>
                     </ul>
+                    {% endfor %}
 
                     <section style = "width: 100%; height: 100px;"></section>
                 </section>

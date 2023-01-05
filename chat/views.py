@@ -1,16 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from .models import Room
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'main.html')
-
-def new(request):
-    pass
-
-def room(request, room):
-    pass
-
-def checkview(request):
-    pass
+    rooms=Room.objects.all()
+    return render(request, 'main.html', {'rooms': rooms})
