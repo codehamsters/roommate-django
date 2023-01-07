@@ -64,8 +64,9 @@
                 <div class="input-container">
                     <input type="text" placeholder="Enter the name for your room" name="room-name-input" id="room-name-input"/>
                 </div>
+                <div class="error-line" style="display: none;"></div>
                 <div class="btn-container">
-                    <button id="create-room-btn" type="submit">Create</button>
+                    <button id="create-room-btn" type="submit" disabled>Create</button>
                 </div>
             </form>
         </div>
@@ -78,6 +79,8 @@
 <script src="{% static 'js/menu-objects.js' %}"></script>
 <script src="{% static 'js/menu-manager.js' %}"></script>
 <script src="{% static 'js/dialog-manager.js' %}"></script>
+<script src="{% static 'js/naming-rules.js' %}"></script>
+
 
 
 </html>
