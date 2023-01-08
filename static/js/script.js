@@ -2,6 +2,9 @@ let moreBtn = document.getElementById("more-btn");
 let moreBtnMenuId = ""; //ID of the current open menu triggered using more-btn; initially nothing is open, hence is empty.
 let blurlay = document.getElementById("blurlay");
 let newRoomDialog = document.getElementById("new-room-dialog");
+let roomNameInput = document.getElementById("room-name-input");
+let createRoomBtn = document.getElementById("create-room-btn");
+let newRoomDialogErrorLine = document.querySelector("#new-room-dialog div.error-line");
 
 moreBtn.addEventListener('click', (evt) => {
     

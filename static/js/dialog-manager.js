@@ -8,3 +8,13 @@ const closeNewRoomDialog = () => {
     newRoomDialog.classList.add("hidden");
     $(blurlay).fadeOut(100);
 }
+
+const disposeDialogs = () =>{
+    closeNewRoomDialog();
+}
+
+blurlay.addEventListener('click', (evt) => {
+    if (evt.target == blurlay){
+        disposeDialogs();
+    }
+})
