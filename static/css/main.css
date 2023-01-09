@@ -1,3 +1,8 @@
+body{
+    background: rgb(var(--pale-bg));
+    color: rgb(var(--strong-fg));
+}
+
 div.viewport-overlay{
     height: 100%;
     width: 100%;

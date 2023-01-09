@@ -1,0 +1,166 @@
+body{
+    background: rgb(var(--bg));
+    color: rgb(var(--strong-fg));
+}
+
+#underlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#workspace{
+    border: 1px solid rgba(var(--fg), 0.1);
+    border-top: 1px solid rgba(var(--strong-fg), 0.2);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    background: rgba(var(--strong-bg), 0.6);
+}
+
+#workspace div.left{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#tabgroup{
+    width: 100%;
+    display: flex;
+    position: relative;
+    height: 50px;
+}
+
+#tabgroup button{
+    background: transparent;
+    border: none;
+    color: rgba(var(--pale-fg), 0.8);
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 24px;
+    transition: 200ms ease-out;
+    cursor: pointer;
+    width: 140px;
+    height: 50px;
+    position: absolute;
+    z-index: 100;
+    left: 140px;
+    text-align: right;
+}
+
+#tabgroup button.active, #tabgroup button:hover{
+    color: rgb(var(--strong-fg));
+    font-weight: 600;
+    font-size: 28px;
+}
+
+#tabgroup button.active{
+    color: rgb(var(--accent-primary));
+    font-weight: 700;
+    font-size: 30px;
+    left: 16px;
+    text-align: left;
+}
+
+#tabgroup button:focus{
+    outline: none;
+}
+
+#form-container{
+    min-width: 300px;
+    width: 400px;
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+}
+
+#registration-form, #login-form{
+    padding: 16px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: 200ms ease-out;
+    position: absolute;
+}
+
+#registration-form.inactive{
+    opacity: 0;
+    transform: scale(0.8) translateX(-750px);
+}
+
+#login-form.inactive{
+    opacity: 0;
+    transform: scale(0.8) translateX(750px);
+}
+
+#form-container section.form-desc{
+    margin: 15px 0 30px 0;
+}
+
+#form-container .input-box{
+    display: block;
+    width: 100%;
+    background: rgb(var(--strong-bg));
+    border: 1px solid rgba(var(--fg), 0.08);
+    border-top: 1px solid rgba(var(--strong-fg), 0.15);
+    height: 48px;
+    color: rgb(var(--strong-fg));
+    font-size: 20px;
+    padding-left: 12px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+}
+
+#form-container .input-box:focus{
+    border: 2px solid rgb(var(--accent-primary));
+    outline: none;
+}
+
+#form-container div.btn-group{
+    margin-top: 15px;
+    text-align: right;
+}
+
+#form-container div.btn-group button{
+    background: rgb(var(--accent-primary));
+    color: rgb(var(--strong-fg));
+    border-radius: 6px;
+    height: 40px;
+    width: 100px;
+    border: 1px solid rgba(var(--pale-fg), 0.12);
+    border-top: 1px solid rgba(var(--pale-fg), 0.3);
+    font-size: 20px;
+    transition: 200ms;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+#form-container div.btn-group button:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+#form-container div.btn-group button:active{
+    transform: translateY(-4px) scale(0.96);
+    filter: brightness(50%);
+}
+
+#form-container div.btn-group button:focus{
+    outline: none;
+    border: 1px solid rgb(var(--strong-fg));
+}
+
+#form-container div.btn-group button:disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#workspace div.right{
+    width: 400px;
+    border-left: 1px solid rgba(var(--fg), 0.1);
+}

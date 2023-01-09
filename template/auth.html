@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/auth.css">
+
+</head>
+<body>
+    <div id="underlay">
+        <div id="workspace">
+            <div class="left">
+                <div id="tabgroup">
+                    <button id="register-tab-btn" class="active">Register</button>
+                    <button id="login-tab-btn">Log in</button>
+                </div>
+                <div id="form-container">
+
+
+                    <form id="registration-form">
+                        <div class="fields">
+                            <section class="form-desc">
+                                Not yet registered on Roommate? Enter your credentials, and we will create an account for you!
+                            </section>
+                            <input type="email" class="input-box" placeholder="Enter your email" />
+                            <input type="text" class="input-box" placeholder="Choose a username for you"/>
+                            <input type="password" class="input-box" placeholder="Password"/>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
+
+                    <form id="login-form" class="inactive">
+                        <div class="fields">
+                            <section class="form-desc">
+                                We're so excited to see you again! Enter your credentials, and we will log you in swiftly!
+                            </section>
+                            <input type="email" class="input-box" placeholder="Enter your email" />
+                            <input type="password" class="input-box" placeholder="Password"/>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit">Log in</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+            <div class="right"></div>
+        </div>
+    </div>
+    <script src="../static/js/auth-manager.js"></script>
+</body>
+</html>
