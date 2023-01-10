@@ -7,10 +7,11 @@ from .models import Room
 # Create your views here.
 
 def home(request): #restricts user to login or register if not already
-    if not User.is_authenticated:
-        return redirect('/auth')
-    rooms=reversed(Room.objects.all())
-    return render(request, 'main.html', {'rooms': rooms})
+    user=request.user
+    if user.is_authenticated:
+        rooms=reversed(Room.objects.all())
+        return render(request, 'main.html', {'rooms': rooms})
+    return redirect('auth')
 
 def create(request): #creates room
     import re
@@ -42,16 +43,17 @@ def register(request): #register user
             user=User.objects.create_user(username=username, email=email, password=password)
             user.save()
             auth.login(request,user)
+            return redirect('/')
     else:
         return render (request, 'auth.html')
     pass
         
 def login(request): #login user
     if request.method=='POST':
-        email=request.POST['email']
+        username=request.POST['username']
         password=request.POST['password']
         
-        user=auth.authentication(email=email, password=password)
+        user=auth.authenticate(username=username, password=password)
         
         if user is not None:
             auth.login(request, user)
@@ -62,8 +64,9 @@ def login(request): #login user
     else:
         return render(request, 'auth.html')
         
-def auth(request): #restricts user if already logged in
-    if User.is_authenticated:
+def authentication(request): #restricts user if already logged in
+    user=request.user
+    if user.is_authenticated:
         return redirect('/')
     return render(request, 'auth.html')
 
