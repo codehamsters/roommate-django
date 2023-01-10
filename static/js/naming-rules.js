@@ -14,7 +14,7 @@ const isRoomNameWrong = (roomName) => {
 
         }else if( ascii >= 48 && ascii <= 57){  //DIGITS
 
-        }else if(ascii == 45 || ascii == 95){   //HYPHEN AND UNDERSCORE
+        }else if(ascii == 32 || ascii == 45 || ascii == 46 || ascii == 95){   //PERIOD, HYPHEN, WHITESPACE AND UNDERSCORE
 
         }else{
             return 3;   //INVALID CHARACTER ERROR
@@ -22,25 +22,3 @@ const isRoomNameWrong = (roomName) => {
     }
     return 0;
 }
-
-roomNameInput.addEventListener('input', () => {
-    let roomName = roomNameInput.value;
-    let errorCode = isRoomNameWrong(roomName);
-    if(errorCode){
-        if(errorCode == 1){
-            createRoomBtn.disabled = true;
-        }else if(errorCode == 2){
-            createRoomBtn.disabled = true;
-            newRoomDialogErrorLine.style.display = null;
-            newRoomDialogErrorLine.innerText = "The name must not be longer than 255 characters.";
-        }else if(errorCode){
-            createRoomBtn.disabled = true;
-            newRoomDialogErrorLine.style.display = null;
-            newRoomDialogErrorLine.innerText = "Only alphabets, digits, hyphens and underscores are allowed.";
-        }
-    }else{
-        createRoomBtn.disabled = false;
-        newRoomDialogErrorLine.style.display = "none";
-        newRoomDialogErrorLine.innerText = "";
-    }
-})

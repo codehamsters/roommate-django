@@ -92,11 +92,13 @@ body{
 #registration-form.inactive{
     opacity: 0;
     transform: scale(0.8) translateX(-750px);
+    z-index: 99;
 }
 
 #login-form.inactive{
     opacity: 0;
     transform: scale(0.8) translateX(750px);
+    z-index: 99;
 }
 
 #form-container section.form-desc{
@@ -120,6 +122,13 @@ body{
 #form-container .input-box:focus{
     border: 2px solid rgb(var(--accent-primary));
     outline: none;
+}
+
+#form-container label.show-password-txt{
+    float: right;
+    color: rgb(var(--accent-primary));
+    font-size: 16px;
+    cursor: pointer;
 }
 
 #form-container div.btn-group{

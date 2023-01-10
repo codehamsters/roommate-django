@@ -27,13 +27,14 @@
                             <section class="form-desc">
                                 Not yet registered on Roommate? Enter your credentials, and we will create an account for you!
                             </section>
-                            <input type="email" class="input-box" placeholder="Enter your email" name="email" />
-                            <input type="text" class="input-box" placeholder="Choose a username for you" name="username"/>
-                            <input type="password" class="input-box" placeholder="Password" name="password"/>
+                            <input type="email" class="input-box email" placeholder="Email" name="email" autofocus/>
+                            <input type="text" class="input-box username" placeholder="Username" name="username"/>
+                            <input type="password" class="input-box password" placeholder="Password" name="password"/>
+                            <label class="show-password-txt">Show Password</label>
                         </div>
 
                         <div class="btn-group">
-                            <button type="submit">Register</button>
+                            <button type="submit" disabled>Register</button>
                         </div>
                     </form>
 
@@ -43,8 +44,9 @@
                             <section class="form-desc">
                                 We're so excited to see you again! Enter your credentials, and we will log you in swiftly!
                             </section>
-                            <input type="text" class="input-box" placeholder="Enter your username" name="username" />
-                            <input type="password" class="input-box" placeholder="Password" name="password"/>
+                            <input type="text" class="input-box username" placeholder="Username" name="username" autofocus/>
+                            <input type="password" class="input-box password" placeholder="Password" name="password"/>
+                            <label class="show-password-txt">Show Password</label>
                         </div>
 
                         <div class="btn-group">

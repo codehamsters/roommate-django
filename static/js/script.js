@@ -22,3 +22,25 @@ moreBtn.addEventListener('click', (evt) => {
     let viewRect = moreBtn.getBoundingClientRect();
     moreBtnMenuId = createMenu(viewRect.left, viewRect.bottom, moreBtnMenu);
 });
+
+roomNameInput.addEventListener('input', () => {
+    let roomName = roomNameInput.value;
+    let errorCode = isRoomNameWrong(roomName);
+    if(errorCode){
+        if(errorCode == 1){
+            createRoomBtn.disabled = true;
+        }else if(errorCode == 2){
+            createRoomBtn.disabled = true;
+            newRoomDialogErrorLine.style.display = null;
+            newRoomDialogErrorLine.innerText = "The name must not be longer than 255 characters.";
+        }else if(errorCode){
+            createRoomBtn.disabled = true;
+            newRoomDialogErrorLine.style.display = null;
+            newRoomDialogErrorLine.innerText = "Only alphabets, digits, hyphens and underscores are allowed.";
+        }
+    }else{
+        createRoomBtn.disabled = false;
+        newRoomDialogErrorLine.style.display = "none";
+        newRoomDialogErrorLine.innerText = "";
+    }
+})
