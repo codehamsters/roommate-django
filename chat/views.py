@@ -35,10 +35,11 @@ def register(request): #register user
         password=request.POST['password']
         
         if User.objects.filter(email=email).exists():
-            messages.info(request, 'E-Mail Already Exists')
+            messages.error(request, 'E-Mail Already Exists')
             return redirect('auth')
         elif User.objects.filter(username=username).exists():
-            messages.info(request, "Username Already in Use")
+            messages.error(request, "Username Already in Use")
+            return redirect('auth')
         else:
             user=User.objects.create_user(username=username, email=email, password=password)
             user.save()
@@ -46,7 +47,6 @@ def register(request): #register user
             return redirect('/')
     else:
         return render (request, 'auth.html')
-    pass
         
 def login(request): #login user
     if request.method=='POST':
@@ -59,7 +59,7 @@ def login(request): #login user
             auth.login(request, user)
             return redirect('/')
         else:
-            messages.info(request ,'Credentials Invalid')
+            messages.warning(request ,'Invalid username or password.')
             return redirect('auth')
     else:
         return render(request, 'auth.html')
