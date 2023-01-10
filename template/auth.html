@@ -27,9 +27,15 @@
                             <section class="form-desc">
                                 Not yet registered on Roommate? Enter your credentials, and we will create an account for you!
                             </section>
+                            {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                            <h6>{{message}}</h6>
+                            {% endif %}
+                            {% endfor %}
                             <input type="email" class="input-box" placeholder="Enter your email" name="email" />
                             <input type="text" class="input-box" placeholder="Choose a username for you" name="username"/>
                             <input type="password" class="input-box" placeholder="Password" name="password"/>
+                            
                         </div>
 
                         <div class="btn-group">
@@ -43,6 +49,11 @@
                             <section class="form-desc">
                                 We're so excited to see you again! Enter your credentials, and we will log you in swiftly!
                             </section>
+                            {% for message in messages %}
+                            {% if message.tags == 'warning' %}
+                            <h6>{{message}} </h6>
+                            {% endif %}
+                            {% endfor %}
                             <input type="text" class="input-box" placeholder="Enter your username" name="username" />
                             <input type="password" class="input-box" placeholder="Password" name="password"/>
                         </div>
