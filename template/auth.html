@@ -21,14 +21,15 @@
                 <div id="form-container">
 
 
-                    <form id="registration-form">
+                    <form id="registration-form" method="POST" action="register">
+                        {% csrf_token %}
                         <div class="fields">
                             <section class="form-desc">
                                 Not yet registered on Roommate? Enter your credentials, and we will create an account for you!
                             </section>
-                            <input type="email" class="input-box" placeholder="Enter your email" />
-                            <input type="text" class="input-box" placeholder="Choose a username for you"/>
-                            <input type="password" class="input-box" placeholder="Password"/>
+                            <input type="email" class="input-box" placeholder="Enter your email" name="email" />
+                            <input type="text" class="input-box" placeholder="Choose a username for you" name="username"/>
+                            <input type="password" class="input-box" placeholder="Password" name="password"/>
                         </div>
 
                         <div class="btn-group">
@@ -36,13 +37,14 @@
                         </div>
                     </form>
 
-                    <form id="login-form" class="inactive">
+                    <form id="login-form" class="inactive" method="POST" action="login">
+                        {% csrf_token %}
                         <div class="fields">
                             <section class="form-desc">
                                 We're so excited to see you again! Enter your credentials, and we will log you in swiftly!
                             </section>
-                            <input type="email" class="input-box" placeholder="Enter your email" />
-                            <input type="password" class="input-box" placeholder="Password"/>
+                            <input type="email" class="input-box" placeholder="Enter your email" name="email" />
+                            <input type="password" class="input-box" placeholder="Password" name="password"/>
                         </div>
 
                         <div class="btn-group">
