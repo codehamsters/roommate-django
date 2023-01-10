@@ -7,6 +7,7 @@ from .models import Room
 def home(request):
     rooms=reversed(Room.objects.all())
     return render(request, 'main.html', {'rooms': rooms})
+
 def create(request):
     import re
     room=request.POST["room-name-input"]

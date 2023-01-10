@@ -25,11 +25,6 @@ html, body{
     font-size: 18px;
 }
 
-body{
-    background: rgb(var(--pale-bg));
-    color: rgb(var(--strong-fg));
-}
-
 #blurlay{
     position: fixed;
     z-index: 10000;
