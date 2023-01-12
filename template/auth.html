@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/auth.css">
+    <script src="https://unpkg.com/htmx.org@1.8.4" integrity="sha384-wg5Y/JwF7VxGk4zLsJEcAojRtlVp1FKKdGy1qN+OMtdq72WRvX/EdRdqg/LOhYeV" crossorigin="anonymous"></script>
+
 
 </head>
 <body>
@@ -27,27 +29,26 @@
                             <section class="form-desc">
                                 Not yet registered on Roommate? Enter your credentials, and we will create an account for you!
                             </section>
-                            <div class="email input-box invalid">
-                                <input type="email" placeholder="Email" name="email" autofocus/>
-                                <div class="invalidity-indicator"><div class="rel"><div class="message">An error occured due to an unknonwn reason bla bla bla!</div></div>i</div>
+                            <!-- <div class="email input-box invalid"> -->
+                            <div class="email input-box" >
+                                <input type="email" placeholder="Email" name="email" autofocus hx-post="{% url 'check_email' %}" hx-target="#email-check" hx-trigger="keyup"/>
+                                <!-- <div class="invalidity-indicator"><div class="rel"><div class="message">An error occured due to an unknonwn reason bla bla bla!</div></div>i</div> -->
                             </div>
-                            <div class="input-box username">
-                                <input type="text" placeholder="Username" name="username"/>
-                                <div class="invalidity-indicator"><div class="rel"><div class="message">An error occured due to an unknonwn reason bla bla bla!</div></div>i</div>
+                            <div id="email-check"></div>
+                            <!-- <div class="input-box username invalid"> -->
+                            <div class="input-box username"  >
+                                <input type="text" placeholder="Username" name="username" autofocus hx-post="{% url 'check_username' %}" hx-target="#username-check" hx-trigger="keyup" />
+                                <!-- <div class="invalidity-indicator"><div class="rel"></div>i</div> -->
                             </div>
+                            <div id="username-check"></div>
                             <div class="input-box password">
                                 <input type="password" placeholder="Password" name="password"/>
                             </div>
                             <label class="show-password-txt">Show Password</label>
-                            {% for message in messages %}
-                            {% if message.tags == 'error' %}
-                            <h6>{{message}}</h6>
-                            {% endif %}
-                            {% endfor %}
                         </div>
 
                         <div class="btn-group">
-                            <button type="submit" disabled>Register</button>
+                            <button type="submit">Register</button>
                         </div>
                     </form>
 
@@ -58,11 +59,11 @@
                                 We're so excited to see you again! Enter your credentials, and we will log you in swiftly!
                             </section>
                             <div class="input-box username">
-                                <input type="text" placeholder="Username" name="username" autofocus/>
+                                <input type="text" placeholder="Username" name="logusername" autofocus/>
                                 <div class="invalidity-indicator"><div class="rel"><div class="message">An error occured due to an unknonwn reason bla bla bla!</div></div>i</div>
                             </div>
                             <div class="input-box password">
-                                <input type="password" placeholder="Password" name="password"/>
+                                <input type="password" placeholder="Password" name="logpassword"/>
                             </div>
                             <label class="show-password-txt">Show Password</label>
                             {% for message in messages %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
+from django.contrib.auth import get_user_model
 from .models import Room
 
 # Create your views here.
@@ -33,13 +34,16 @@ def register(request): #register user
         username=request.POST['username']
         email=request.POST['email']
         password=request.POST['password']
+        if not username or not email:
+            return render(request, 'auth.html')
         
         if User.objects.filter(email=email).exists():
             messages.error(request, 'E-Mail Already Exists')
             return redirect('auth')
-        elif User.objects.filter(username=username).exists():
-            messages.error(request, "Username Already in Use")
-            return redirect('auth')
+        if User.objects.filter(username=username).exists(): 
+            return HttpResponse('<div style="color: red">This Username already exists</div>')
+            # messages.error(request, "Username Already in Use")
+            # return redirect('auth')
         else:
             user=User.objects.create_user(username=username, email=email, password=password)
             user.save()
@@ -50,8 +54,8 @@ def register(request): #register user
         
 def login(request): #login user
     if request.method=='POST':
-        username=request.POST['username']
-        password=request.POST['password']
+        username=request.POST['logusername']
+        password=request.POST['logpassword']
         
         user=auth.authenticate(username=username, password=password)
         
@@ -66,6 +70,13 @@ def login(request): #login user
         
 def authentication(request): #restricts user if already logged in
     user=request.user
+    if request.method=='POST':
+        username=request.POST['username']
+        email=request.POST['email']
+        if get_user_model().objects.filter(username=username).exists:
+            return HttpResponse('<div style="color: red">Username already in use</div>')
+        if get_user_model().objects.filter(email=email).exists:
+            return HttpResponse('<div style="color: red">E-Mail already in use</div>')
     if user.is_authenticated:
         return redirect('/')
     return render(request, 'auth.html')
@@ -73,3 +84,24 @@ def authentication(request): #restricts user if already logged in
 def logout(request): #logout user
     auth.logout(request)
     return redirect('auth')
+
+def check_username(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        if not username:
+            HttpResponse()
+        if User.objects.filter(username=username).exists():
+            return HttpResponse('<div style="color: red">Username already in use</div>')
+        else:
+            return HttpResponse()
+
+
+def check_email(request):
+    if request.method=='POST':
+        email=request.POST['email']
+        if not email:
+            return HttpResponse()
+        elif get_user_model().objects.filter(email=email).exists():
+            return HttpResponse('<div style="color: red">E-Mail already in use</div>')
+        else:
+            return HttpResponse()
