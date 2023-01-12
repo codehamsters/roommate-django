@@ -1,12 +1,33 @@
 let tabgroupBtns = document.querySelectorAll("#tabgroup button");
 let forms = document.querySelectorAll("#form-container form");
-let registrationEmailField = document.querySelector("#registration-form input.email");
-let registrationUsernameField = document.querySelector("#registration-form input.username");
-let registrationPasswordField = document.querySelector("#registration-form input.password");
+let registrationEmailField = document.querySelector("#registration-form .input-box.email input");
+let registrationUsernameField = document.querySelector("#registration-form .input-box.username input");
+let registrationPasswordField = document.querySelector("#registration-form .input-box.password input");
 let registrationShowPasswordLabel = document.querySelector("#registration-form label.show-password-txt");
-let loginEmailField = document.querySelector("#login-form input.username");
-let loginPasswordField = document.querySelector("#login-form input.password");
+let loginUsernameField = document.querySelector("#login-form .input-box.username input");
+let loginPasswordField = document.querySelector("#login-form .input-box.password input");
 let loginShowPasswordLabel = document.querySelector("#login-form label.show-password-txt");
+let invalidityIndicators = document.querySelectorAll("#form-container form .input-box .invalidity-indicator");
+let invalidityTooltips = document.querySelectorAll("#form-container form .input-box .invalidity-indicator .message");
+let fields = [registrationEmailField, registrationUsernameField, registrationPasswordField, loginUsernameField, loginPasswordField];
+
+for(let i = 0; i < invalidityIndicators.length; i++){
+    invalidityIndicators[i].addEventListener("mouseover", () => {
+        invalidityTooltips[i].classList.add("tooltipped");
+    })
+    invalidityIndicators[i].addEventListener("mouseout", () => {
+        invalidityTooltips[i].classList.remove("tooltipped");
+    })
+}
+
+for(let i = 0; i < fields.length; i++){
+    fields[i].addEventListener('focus', (evt) => {
+        evt.target.parentElement.classList.add("focus");
+    })
+    fields[i].addEventListener('blur', (evt) => {
+        evt.target.parentElement.classList.remove("focus")
+    })
+}
 
 const toggleForm = (formElement, readOnly) => {
     let elements = formElement.elements;
@@ -46,7 +67,7 @@ const switchTab = (i) => {
     setTimeout(() => {
         toggleForm(forms[i], false);
         toggleForm(forms[j], true);
-        i ? loginEmailField.focus() : registrationEmailField.focus();
+        i ? loginUsernameField.focus() : registrationEmailField.focus();
     }, 300);
 }
 
@@ -60,3 +81,4 @@ loginShowPasswordLabel.addEventListener('click', () => {
 registrationShowPasswordLabel.addEventListener('click', () => {
     togglePassword("registration", registrationPasswordField.type == "password");
 })
+

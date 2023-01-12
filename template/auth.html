@@ -27,9 +27,17 @@
                             <section class="form-desc">
                                 Not yet registered on Roommate? Enter your credentials, and we will create an account for you!
                             </section>
-                            <input type="email" class="input-box email" placeholder="Email" name="email" autofocus/>
-                            <input type="text" class="input-box username" placeholder="Username" name="username"/>
-                            <input type="password" class="input-box password" placeholder="Password" name="password"/>
+                            <div class="email input-box invalid">
+                                <input type="email" placeholder="Email" name="email" autofocus/>
+                                <div class="invalidity-indicator"><div class="rel"><div class="message">An error occured due to an unknonwn reason bla bla bla!</div></div>i</div>
+                            </div>
+                            <div class="input-box username">
+                                <input type="text" placeholder="Username" name="username"/>
+                                <div class="invalidity-indicator"><div class="rel"><div class="message">An error occured due to an unknonwn reason bla bla bla!</div></div>i</div>
+                            </div>
+                            <div class="input-box password">
+                                <input type="password" placeholder="Password" name="password"/>
+                            </div>
                             <label class="show-password-txt">Show Password</label>
                             {% for message in messages %}
                             {% if message.tags == 'error' %}
@@ -49,8 +57,12 @@
                             <section class="form-desc">
                                 We're so excited to see you again! Enter your credentials, and we will log you in swiftly!
                             </section>
-                            <input type="text" class="input-box username" placeholder="Username" name="username" autofocus/>
-                            <input type="password" class="input-box password" placeholder="Password" name="password"/>
+                            <div class="input-box username">
+                                <input type="text" placeholder="Username" name="username" autofocus/>
+                            </div>
+                            <div class="input-box password">
+                                <input type="password" placeholder="Password" name="password"/>
+                            </div>
                             <label class="show-password-txt">Show Password</label>
                             {% for message in messages %}
                             {% if message.tags == 'warning' %}
@@ -70,6 +82,7 @@
             <div class="right"></div>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/1857912463.js" crossorigin="anonymous"></script>
     <script src="../static/js/auth-manager.js"></script>
 </body>
 </html>

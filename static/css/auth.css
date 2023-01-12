@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
 body{
     background: rgb(var(--bg));
     color: rgb(var(--strong-fg));
@@ -117,10 +119,90 @@ body{
     padding-left: 12px;
     border-radius: 5px;
     margin-bottom: 12px;
+    position: relative;
 }
 
-#form-container .input-box:focus{
+#form-container .input-box.focus{
     border: 2px solid rgb(var(--accent-primary));
+    outline: none;
+}
+
+#form-container .input-box.invalid{
+    border: 1px solid rgba(255, 0, 0, 0.8);
+}
+
+#form-container .input-box input{
+    background: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    font: inherit;
+}
+
+#form-container .input-box.invalid input{
+    width: calc(100% - 40px);
+}
+
+#form-container .input-box div.invalidity-indicator{
+    display: none;
+}
+
+#form-container .input-box.invalid div.invalidity-indicator{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-family: 'Inconsolata', 'Courier New', Courier, monospace;
+    font-weight: bold;
+    background: rgba(255, 0, 0, 0.1);
+    color: rgba(255, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#form-container .input-box.invalid div.invalidity-indicator .rel{
+    position: relative;
+}
+
+#form-container .input-box.invalid div.invalidity-indicator .message{
+    position: absolute;
+    z-index: 40;
+    width: 240px;
+    padding: 8px;
+    font-weight: normal;
+    color: rgba(255, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(var(--fg), 0.1);
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(var(--bg), 0.8);
+    border-radius: 8px;
+    top: 20px;
+    right: -10px;
+    transform-origin: top right;
+    transform: scale(0);
+    opacity: 0;
+    transition: 250ms ease-out;
+    pointer-events: none;
+}
+
+#form-container .input-box.invalid div.invalidity-indicator .message.tooltipped{
+    transform: scale(1);
+    opacity: 1;
+}
+
+#form-container .input-box input:focus{
     outline: none;
 }
 
