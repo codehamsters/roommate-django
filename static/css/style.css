@@ -25,6 +25,10 @@ html, body{
     font-size: 18px;
 }
 
+body.unclickable{
+    pointer-events: none;
+}
+
 #blurlay{
     position: fixed;
     z-index: 10000;
