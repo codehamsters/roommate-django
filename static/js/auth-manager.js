@@ -136,7 +136,7 @@ registrationEmailField.addEventListener('input', () => {
             registrationEmailField.parentElement.classList.remove("invalid");
         }
         toggleRegistrationSubmitBtn();
-    }, 100);
+    }, 50);
     
 });
 

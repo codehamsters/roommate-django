@@ -31,12 +31,17 @@
                             <section class="form-desc">
                                 Welcome! Create your account now and join our community of like-minded individuals. Sign up today and start exploring all we have to offer.
                             </section>
+                            {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                            <div id="login-error-message">{{message}}</div>
+                            {% endif %}
+                            {% endfor %}
                             <div class="email input-box focus">
-                                <input type="email" placeholder="Email" name="email" autofocus hx-post="{% url 'check_email' %}" hx-target="#registration-email-error-message" hx-trigger="input"/>
+                                <input type="email" placeholder="Email" name="email" autofocus hx-post="{% url 'check_email' %}" hx-target="#registration-email-error-message" hx-trigger="input" />
                                 <div class="invalidity-indicator"><div class="rel"><div class="message" id="registration-email-error-message"></div></div>i</div>
                             </div>
                             <div class="input-box username">
-                                <input type="text" placeholder="Username" name="username" autofocus hx-post="{% url 'check_username' %}" hx-target="#registration-username-error-message" hx-trigger="input" />
+                                <input type="text" placeholder="Username" name="username" autofocus hx-post="{% url 'check_username' %}" hx-target="#registration-username-error-message" hx-trigger="input"/>
                                 <div class="invalidity-indicator"><div class="rel"><div class="message" id="registration-username-error-message"></div></div>i</div>
                             </div>
                             <div class="input-box password">
