@@ -177,7 +177,7 @@ body{
     width: 240px;
     padding: 8px;
     font-weight: normal;
-    color: rgba(255, 0, 0, 0.5);
+    color: rgba(255, 0, 0, 0.7);
     backdrop-filter: blur(3px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(var(--fg), 0.1);
