@@ -29,14 +29,14 @@
                             <section class="form-desc">
                                 Not yet registered on Roommate? Enter your credentials, and we will create an account for you!
                             </section>
-                            <div class="email input-box" >
-                                <input type="email" placeholder="Email" name="email" autofocus hx-post="{% url 'check_email' %}" hx-target="#email-check" hx-trigger="keyup"/>
+                            <div class="email input-box focus">
+                                <input type="email" placeholder="Email" name="email" autofocus hx-post="{% url 'check_email' %}" hx-target="#registration-email-error-message" hx-trigger="input"/>
+                                <div class="invalidity-indicator"><div class="rel"><div class="message" id="registration-email-error-message"></div></div>i</div>
                             </div>
-                            <div id="email-check"></div>
-                            <div class="input-box username"  >
-                                <input type="text" placeholder="Username" name="username" autofocus hx-post="{% url 'check_username' %}" hx-target="#username-check" hx-trigger="keyup" />
+                            <div class="input-box username">
+                                <input type="text" placeholder="Username" name="username" autofocus hx-post="{% url 'check_username' %}" hx-target="#registration-username-error-message" hx-trigger="input" />
+                                <div class="invalidity-indicator"><div class="rel"><div class="message" id="registration-username-error-message"></div></div>i</div>
                             </div>
-                            <div id="username-check"></div>
                             <div class="input-box password">
                                 <input type="password" placeholder="Password" name="password"/>
                             </div>
@@ -55,11 +55,11 @@
                                 We're so excited to see you again! Enter your credentials, and we will log you in swiftly!
                             </section>
                             <div class="input-box username">
-                                <input type="text" placeholder="Username" name="logusername" autofocus/>
+                                <input type="text" placeholder="Username" name="logusername" autofocus readonly/>
                                 <div class="invalidity-indicator"><div class="rel"><div class="message">An error occured due to an unknonwn reason bla bla bla!</div></div>i</div>
                             </div>
                             <div class="input-box password">
-                                <input type="password" placeholder="Password" name="logpassword"/>
+                                <input type="password" placeholder="Password" name="logpassword" readonly/>
                             </div>
                             <label class="show-password-txt">Show Password</label>
                             {% for message in messages %}
