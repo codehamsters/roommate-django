@@ -1,7 +1,9 @@
 let tabgroupBtns = document.querySelectorAll("#tabgroup button");
 let forms = document.querySelectorAll("#form-container form");
 let registrationEmailField = document.querySelector("#registration-form .input-box.email input");
+let registrationEmailErrorMessage = document.querySelector("#registration-email-error-message");
 let registrationUsernameField = document.querySelector("#registration-form .input-box.username input");
+let registrationUsernameErrorMessage = document.querySelector("#registration-username-error-message");
 let registrationPasswordField = document.querySelector("#registration-form .input-box.password input");
 let registrationShowPasswordLabel = document.querySelector("#registration-form label.show-password-txt");
 let loginUsernameField = document.querySelector("#login-form .input-box.username input");
@@ -11,6 +13,7 @@ let invalidityIndicators = document.querySelectorAll("#form-container form .inpu
 let invalidityTooltips = document.querySelectorAll("#form-container form .input-box .invalidity-indicator .message");
 let fields = [registrationEmailField, registrationUsernameField, registrationPasswordField, loginUsernameField, loginPasswordField];
 
+//Event Listener to Show / Hide Tooltip of Invalid Input Boxes
 for(let i = 0; i < invalidityIndicators.length; i++){
     invalidityIndicators[i].addEventListener("mouseover", () => {
         invalidityTooltips[i].classList.add("tooltipped");
@@ -20,6 +23,7 @@ for(let i = 0; i < invalidityIndicators.length; i++){
     })
 }
 
+//Event Listener to Focus / Blur the input box correctly
 for(let i = 0; i < fields.length; i++){
     fields[i].addEventListener('focus', (evt) => {
         evt.target.parentElement.classList.add("focus");
@@ -29,6 +33,7 @@ for(let i = 0; i < fields.length; i++){
     })
 }
 
+//Completely disable the elements of a form when it is inactive
 const toggleForm = (formElement, readOnly) => {
     let elements = formElement.elements;
     for(let i = 0; i < elements.length; i++){
@@ -36,6 +41,8 @@ const toggleForm = (formElement, readOnly) => {
     }
 }
 
+
+// Show Hide Password Functionality
 const togglePassword = (formType, newState) => {
     
     if (formType == "registration"){
@@ -56,7 +63,14 @@ const togglePassword = (formType, newState) => {
         }
     }
 }
+loginShowPasswordLabel.addEventListener('click', () => {
+    togglePassword("login", loginPasswordField.type == "password");
+})
+registrationShowPasswordLabel.addEventListener('click', () => {
+    togglePassword("registration", registrationPasswordField.type == "password");
+})
 
+//Switch between Forms functionality
 const switchTab = (i) => {
     let j = i ? 0 : 1;
     tabgroupBtns[i].classList.add('active');
@@ -70,15 +84,22 @@ const switchTab = (i) => {
         i ? loginUsernameField.focus() : registrationEmailField.focus();
     }, 300);
 }
-
 for(let i = 0; i < tabgroupBtns.length; i++){
     tabgroupBtns[i].addEventListener('click', () => switchTab(i));
 }
 
-loginShowPasswordLabel.addEventListener('click', () => {
-    togglePassword("login", loginPasswordField.type == "password");
+
+//Event listener to listen for wrong inputs in registration form, and display message.
+registrationEmailField.addEventListener('input', () => {
+    setTimeout(() => {  //Timeout is required because, the content of registrationEmailErrorMessage changes after some time of input event
+        let message = registrationEmailErrorMessage.textContent;
+        if(message){
+            registrationEmailField.parentElement.classList.add("invalid");
+        }else{
+            registrationEmailField.parentElement.classList.remove("invalid");
+        }
+    }, 100);
+    
 })
-registrationShowPasswordLabel.addEventListener('click', () => {
-    togglePassword("registration", registrationPasswordField.type == "password");
-})
+
 
