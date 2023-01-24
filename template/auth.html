@@ -8,11 +8,12 @@
 
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/auth.css">
+    <link rel="stylesheet" href="../static/css/spinner.css">
     <script src="https://unpkg.com/htmx.org@1.8.4" integrity="sha384-wg5Y/JwF7VxGk4zLsJEcAojRtlVp1FKKdGy1qN+OMtdq72WRvX/EdRdqg/LOhYeV" crossorigin="anonymous"></script>
 
 
 </head>
-<body>
+<body class="unclickable">
     <div id="underlay">
         <div id="workspace">
             <div class="left">
@@ -27,7 +28,7 @@
                         {% csrf_token %}
                         <div class="fields">
                             <section class="form-desc">
-                                Not yet registered on Roommate? Enter your credentials, and we will create an account for you!
+                                Welcome! Create your account now and join our community of like-minded individuals. Sign up today and start exploring all we have to offer.
                             </section>
                             <div class="email input-box focus">
                                 <input type="email" placeholder="Email" name="email" autofocus hx-post="{% url 'check_email' %}" hx-target="#registration-email-error-message" hx-trigger="input"/>
@@ -44,7 +45,7 @@
                         </div>
 
                         <div class="btn-group">
-                            <button type="submit">Register</button>
+                            <button type="submit" class="submit-btn" disabled>Register</button>
                         </div>
                     </form>
 
@@ -52,8 +53,13 @@
                         {% csrf_token %}
                         <div class="fields">
                             <section class="form-desc">
-                                We're so excited to see you again! Enter your credentials, and we will log you in swiftly!
+                                Welcome back! Sign in to access your account, continue where you left off, and stay connected with our community.
                             </section>
+                            {% for message in messages %}
+                            {% if message.tags == 'warning' %}
+                            <div id="login-error-message">{{message}}</div>
+                            {% endif %}
+                            {% endfor %}
                             <div class="input-box username">
                                 <input type="text" placeholder="Username" name="logusername" autofocus readonly/>
                                 <div class="invalidity-indicator"><div class="rel"><div class="message">An error occured due to an unknonwn reason bla bla bla!</div></div>i</div>
@@ -62,15 +68,10 @@
                                 <input type="password" placeholder="Password" name="logpassword" readonly/>
                             </div>
                             <label class="show-password-txt">Show Password</label>
-                            {% for message in messages %}
-                            {% if message.tags == 'warning' %}
-                            <h6>{{message}} </h6>
-                            {% endif %}
-                            {% endfor %}
                         </div>
 
                         <div class="btn-group">
-                            <button type="submit">Log in</button>
+                            <button type="submit" class="submit-btn" disabled>Log in</button>
                         </div>
                     </form>
 
@@ -80,6 +81,16 @@
             <div class="right"></div>
         </div>
     </div>
+
+    <div id = "loader">
+        <div class="spinner">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="20" />
+            </svg>
+        </div>
+    </div>
+    
+      
     <script src="https://kit.fontawesome.com/1857912463.js" crossorigin="anonymous"></script>
     <script src="../static/js/auth-manager.js"></script>
 </body>
