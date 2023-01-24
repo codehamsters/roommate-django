@@ -1,0 +1,33 @@
+.nh
+.TH "GH-CODESPACE-REBUILD" "1" "Jan 2023" "GitHub CLI 2.21.2" "GitHub CLI manual"
+
+.SH NAME
+.PP
+gh-codespace-rebuild - Rebuild a codespace
+
+
+.SH SYNOPSIS
+.PP
+\fB\fCgh codespace rebuild [flags]\fR
+
+
+.SH DESCRIPTION
+.PP
+Rebuilding recreates your codespace. Your code and any current changes will be
+preserved. Your codespace will be rebuilt using your working directory's
+dev container. A full rebuild also removes cached Docker images.
+
+
+.SH OPTIONS
+.TP
+\fB\fC-c\fR, \fB\fC--codespace\fR \fB\fC<string>\fR
+name of the codespace
+
+.TP
+\fB\fC--full\fR
+perform a full rebuild
+
+
+.SH SEE ALSO
+.PP
+\fB\fCgh-codespace(1)\fR

@@ -1,0 +1,72 @@
+.nh
+.TH "GH-EXTENSION-BROWSE" "1" "Jan 2023" "GitHub CLI 2.21.2" "GitHub CLI manual"
+
+.SH NAME
+.PP
+gh-extension-browse - Enter a UI for browsing, adding, and removing extensions
+
+
+.SH SYNOPSIS
+.PP
+\fB\fCgh extension browse [flags]\fR
+
+
+.SH DESCRIPTION
+.PP
+This command will take over your terminal and run a fully interactive
+interface for browsing, adding, and removing gh extensions.
+
+.PP
+The extension list is navigated with the arrow keys or with j/k.
+Space and control+space (or control + j/k) page the list up and down.
+Extension readmes can be scrolled with page up/page down keys
+(fn + arrow up/down on a mac keyboard).
+
+.PP
+For highlighted extensions, you can press:
+
+.RS
+.IP \(bu 2
+w to open the extension in your web browser
+.IP \(bu 2
+i to install the extension
+.IP \(bu 2
+r to remove the extension
+
+.RE
+
+.PP
+Press / to focus the filter input. Press enter to scroll the results.
+Press Escape to clear the filter and return to the full list.
+
+.PP
+Press q to quit.
+
+.PP
+The output of this command may be difficult to navigate for screen reader
+users, users operating at high zoom and other users of assistive technology. It
+is also not advised for automation scripts. We advise those users to use the
+alternative command:
+
+.PP
+.RS
+
+.nf
+gh ext search
+
+.fi
+.RE
+
+.PP
+along with gh ext install, gh ext remove, and gh repo view.
+
+
+.SH OPTIONS
+.TP
+\fB\fC--debug\fR
+log to /tmp/extBrowse-*
+
+
+.SH SEE ALSO
+.PP
+\fB\fCgh-extension(1)\fR
