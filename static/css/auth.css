@@ -73,14 +73,14 @@ body{
 #form-container{
     min-width: 300px;
     width: 400px;
-    height: 450px;
+    height: 500px;
     overflow: hidden;
     position: relative;
 }
 
 #registration-form, #login-form{
     padding: 16px;
-    height: 450px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -178,7 +178,7 @@ body{
     padding: 8px;
     font-weight: normal;
     color: rgba(255, 0, 0, 0.7);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(var(--fg), 0.1);
     font-size: 15px;
@@ -211,6 +211,17 @@ body{
     color: rgb(var(--accent-primary));
     font-size: 16px;
     cursor: pointer;
+}
+
+#login-error-message{
+    text-align: center;
+    background: rgba(255, 0, 0, 0.03);
+    margin: -5px 0 20px 0;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    color: rgba(255, 0, 0, 0.7);
+    border: 1px solid rgba(255, 0, 0, 0.2);
 }
 
 #form-container div.btn-group{
@@ -252,6 +263,40 @@ body{
 }
 
 #workspace div.right{
-    width: 400px;
+    width: 375px;
     border-left: 1px solid rgba(var(--fg), 0.1);
+    background: url("../media/auth-sidebanner.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 8px 8px 0;
 }
+
+#loader{
+    position: fixed;
+    height: 120px;
+    width: 120px;
+    top: calc(50% - 60px);
+    left: calc(50% - 60px);
+    display: flex;
+    background: rgb(var(--strong-bg), 0.75);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    border: 1px solid rgba(var(--fg), 0.1);
+    z-index: 1000;
+    transform-origin: bottom;
+    transition: 300ms;
+    pointer-events: none;
+}
+
+#loader.hidden{
+    opacity: 0;
+    transform: scale(0.3) translateY(-100px);
+}
+
+@media only screen and (max-width: 1024px){
+    #workspace div.right{
+        display: none;
+    }
+}
+

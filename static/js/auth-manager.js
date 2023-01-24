@@ -6,12 +6,28 @@ let registrationUsernameField = document.querySelector("#registration-form .inpu
 let registrationUsernameErrorMessage = document.querySelector("#registration-username-error-message");
 let registrationPasswordField = document.querySelector("#registration-form .input-box.password input");
 let registrationShowPasswordLabel = document.querySelector("#registration-form label.show-password-txt");
+let registrationSubmitBtn = document.querySelector('#registration-form button.submit-btn');
+let loginErrorMessage = document.querySelector("#login-error-message");
 let loginUsernameField = document.querySelector("#login-form .input-box.username input");
 let loginPasswordField = document.querySelector("#login-form .input-box.password input");
 let loginShowPasswordLabel = document.querySelector("#login-form label.show-password-txt");
+let loginSubmitBtn = document.querySelector('#login-form button.submit-btn');
 let invalidityIndicators = document.querySelectorAll("#form-container form .input-box .invalidity-indicator");
 let invalidityTooltips = document.querySelectorAll("#form-container form .input-box .invalidity-indicator .message");
 let fields = [registrationEmailField, registrationUsernameField, registrationPasswordField, loginUsernameField, loginPasswordField];
+let loader = document.querySelector('#loader');
+
+
+//Hiding the loader once the page is loaded:
+function hideLoader(){
+    loader.classList.add("hidden");
+    document.body.classList.remove("unclickable");
+}
+function showLoader(){
+    loader.classList.remove("hidden");
+    document.body.classList.add("unclickable");
+}
+hideLoader();
 
 //Event Listener to Show / Hide Tooltip of Invalid Input Boxes
 for(let i = 0; i < invalidityIndicators.length; i++){
@@ -75,7 +91,6 @@ const switchTab = (i) => {
     let j = i ? 0 : 1;
     tabgroupBtns[i].classList.add('active');
     forms[i].classList.remove('inactive');
-    console.log(forms[i].classList);
     tabgroupBtns[j].classList.remove('active');
     forms[j].classList.add('inactive');
     setTimeout(() => {
@@ -88,6 +103,28 @@ for(let i = 0; i < tabgroupBtns.length; i++){
     tabgroupBtns[i].addEventListener('click', () => switchTab(i));
 }
 
+//Auto switch to login tab when the page loads with a login error message.
+if(loginErrorMessage){
+    tabgroupBtns[1].click();
+}
+
+// Disabling Form Submit button on wrong input
+const toggleRegistrationSubmitBtn = () => {
+    if(!(registrationEmailField.value && registrationUsernameField.value && registrationPasswordField.value)){
+        registrationSubmitBtn.disabled = true;
+    }else if(registrationEmailErrorMessage.textContent || registrationUsernameErrorMessage.textContent){
+        registrationSubmitBtn.disabled = true;
+    }else{
+        registrationSubmitBtn.disabled = false;
+    }
+}
+const toggleLoginSubmitBtn = () => {
+    if(!(loginUsernameField.value && loginPasswordField.value)){
+        loginSubmitBtn.disabled = true;
+    }else{
+        loginSubmitBtn.disabled = false;
+    }
+}
 
 //Event listener to listen for wrong inputs in registration form, and display message.
 registrationEmailField.addEventListener('input', () => {
@@ -98,8 +135,37 @@ registrationEmailField.addEventListener('input', () => {
         }else{
             registrationEmailField.parentElement.classList.remove("invalid");
         }
+        toggleRegistrationSubmitBtn();
     }, 100);
     
+});
+
+registrationUsernameField.addEventListener('input', () => {
+    setTimeout(() => {  //Timeout is required because, the content of registrationEmailErrorMessage changes after some time of input event
+        let message = registrationUsernameErrorMessage.textContent;
+        if(message){
+            registrationUsernameField.parentElement.classList.add("invalid");
+        }else{
+            registrationUsernameField.parentElement.classList.remove("invalid");
+        }
+        toggleRegistrationSubmitBtn();
+    }, 100);
+    
+});
+
+registrationPasswordField.addEventListener('input', () => {
+    toggleRegistrationSubmitBtn();
 })
 
+loginUsernameField.addEventListener('input', () => {
+    toggleLoginSubmitBtn();
+})
 
+loginPasswordField.addEventListener('input', () => {
+    toggleLoginSubmitBtn();
+})
+
+//Showing the loader on form submit:
+for(let i = 0; i < forms.length; i++){
+    forms[i].addEventListener('submit', showLoader);
+}
