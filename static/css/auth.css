@@ -23,7 +23,7 @@ body{
 }
 
 #workspace div.left{
-    padding: 20px;
+    padding: 15px 20px 20px 20px;
     display: flex;
     flex-direction: column;
 }
@@ -45,7 +45,7 @@ body{
     transition: 200ms ease-out;
     cursor: pointer;
     width: 140px;
-    height: 50px;
+    height: 100%;
     position: absolute;
     z-index: 100;
     left: 140px;
@@ -80,7 +80,7 @@ body{
 
 #registration-form, #login-form{
     padding: 16px;
-    height: 500px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -155,7 +155,7 @@ body{
     bottom: 8px;
     height: 30px;
     width: 30px;
-    border-radius: 15px;
+    border-radius: 50%;
     font-size: 18px;
     font-family: 'Inconsolata', 'Courier New', Courier, monospace;
     font-weight: bold;
@@ -300,3 +300,139 @@ body{
     }
 }
 
+@media only screen and (max-width: 512px){
+
+    #tabgroup{
+        height: 36px;
+    }
+
+    #tabgroup button{
+        font-size: 18px;
+        width: 110px;
+        left: 70px;
+    }
+
+    #tabgroup button:active, #tabgroup button:hover{
+        font-size: 22px;
+    }
+
+    #tabgroup button.active{
+        font-size: 22px;
+        left: 0;
+    }
+
+    #form-container{
+        min-width: unset;
+        max-width: 300px;
+        width: 75vw;
+        height: 400px;
+    }
+
+    #registration-form, #login-form{
+        padding: 0;
+    }
+
+    #form-container section.form-desc {
+        margin: 12px 0 12px 0;
+        font-size: 16px;
+    }
+
+    #form-container .input-box{
+        height: 40px;
+        font-size: 16px;
+        padding-left: 12px;
+        margin-bottom: 10px;
+    }
+
+    #form-container .input-box.invalid div.invalidity-indicator{
+        top: 7px;
+        right: 7px;
+        height: 24px;
+        width: 24px;
+        font-size: 14px;
+    }
+
+    #form-container .input-box.invalid div.invalidity-indicator .message{
+        width: 200px;
+        padding: 6px;
+        font-size: 13px;
+        border-radius: 6px;
+        top: 15px;
+    }
+
+    #form-container label.show-password-txt{
+        font-size: 14px;
+    }
+
+    #form-container div.btn-group button{
+        height: 36px;
+        width: 92px;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 360px){
+
+    #tabgroup{
+        height: 32px;
+    }
+
+    #tabgroup button{
+        font-size: 16px;
+        width: 100px;
+        left: 64px;
+    }
+
+    #tabgroup button:active, #tabgroup button:hover{
+        font-size: 20px;
+    }
+
+    #tabgroup button.active{
+        font-size: 20px;
+    }
+
+    #form-container{
+        min-width: unset;
+        height: 360px;
+    }
+
+    #form-container section.form-desc {
+        margin: 12px 0 12px 0;
+        font-size: 14px;
+    }
+
+    #form-container .input-box{
+        height: 36px;
+        font-size: 14px;
+        padding-left: 9px;
+        margin-bottom: 7px;
+    }
+
+    #form-container .input-box.invalid div.invalidity-indicator{
+        top: 6px;
+        right: 6px;
+        height: 22px;
+        width: 22px;
+        font-size: 12px;
+    }
+
+    #form-container .input-box.invalid div.invalidity-indicator .message{
+        width: 160px;
+        padding: 6px;
+        font-size: 12px;
+        border-radius: 5px;
+        top: 15px;
+    }
+
+    #form-container label.show-password-txt{
+        font-size: 12px;
+    }
+
+    #form-container div.btn-group button{
+        height: 30px;
+        width: 84px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+}
