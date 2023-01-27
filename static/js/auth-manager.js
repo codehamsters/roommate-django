@@ -136,7 +136,7 @@ registrationEmailField.addEventListener('input', () => {
             registrationEmailField.parentElement.classList.remove("invalid");
         }
         toggleRegistrationSubmitBtn();
-    }, 10000);
+    }, 5000);
     
 });
 
@@ -149,7 +149,7 @@ registrationUsernameField.addEventListener('input', () => {
             registrationUsernameField.parentElement.classList.remove("invalid");
         }
         toggleRegistrationSubmitBtn();
-    }, 10000);
+    }, 5000);
     
 });
 
