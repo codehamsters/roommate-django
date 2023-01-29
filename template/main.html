@@ -12,8 +12,23 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
     <link rel="stylesheet" href="{% static 'css/new-room-dialog.css' %}">
+
+    <script>
+
+        const openChat  = (obj) => {
+            let roomid = document.getElementById("open-room-id");
+            roomid.value = obj.dataset.roomid;
+            roomid.parentElement.submit();
+        }
+
+    </script>
+
 </head>
 <body>
+    <form id="room-opener" method="POST" action="/checkview" style="display: none;">
+        {% csrf_token %}
+        <input id="open-room-id" type="text" name="open-room-id"/>
+    </form>
     <div class="viewport-overlay">
         <div class="workspace">
             <aside class="roomlist">
@@ -28,11 +43,11 @@
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
                 </section>
-
+                
                 <section class="rooms-container">
                     {% for room in rooms %}
-                    <ul class="roomlist">
-                        <li class>
+                    <ul class="roomlist" >
+                        <li data-roomid = "{{room.name}}" onclick = "openChat(this)">
                             <section class="room-icon-container">
                                 <i class="far fa-comment-dots"></i>
                             </section>
@@ -50,7 +65,67 @@
                     <section style = "width: 100%; height: 100px;"></section>
                 </section>
             </aside>
-            <aside class="room"></aside>
+            <aside class="room">
+                <script>
+                    $(document).ready(function(){
+                    
+                    setInterval(function(){
+                        $.ajax({
+                            type: 'GET',
+                            url : "/getMessages/{{room1}}/",
+                            success: function(response){
+                                console.log(response);
+                                $("#chat-messages").empty();
+                                for (let key in response.messages)
+                                {
+                                    let temp="<div class='message recieved'><div class='body'>"+response.messages[key].value+"</div><span class='timestamp'>"+response.messages[key].date+"</span></div>";
+                                    $("#chat-messages").append(temp);
+                                }
+                            },
+                            error: function(response){
+                                alert('An error occured')
+                            }
+                        });
+                    },1000);
+                    })
+                </script>
+                <div class="room-title-bar">
+                    Roomname
+                </div>
+                <div class="chats" id="chat-messages">
+                    <div class="message sent"><div class="body">Sent</div><span class="timestamp">00:00AM</span></div>
+                    <div class="message recieved"><div class="body">Recieved</div><span class="timestamp">00:00AM</span></div>
+                </div>
+                <form id="message-input-area" action="/send" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="room_id" id="room_id" value="{room_details.id}">
+                    <input type="text" id="message-input" name="message-input" placeholder="Type your message here" />
+                    <button type="submit">Send</button>
+                </form>
+                <script type="text/javascript">
+                    $(document).on('submit','#message-input-area',function(e){
+                      e.preventDefault();
+                  
+                      $.ajax({
+                        type:'POST',
+                        url:'/send',
+                        data:{
+                            // username:$('#username').val(),
+                            room_id:$('#room_id').val(),
+                            message:$('#message-input').val(),
+                            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                        },
+                        success: function(data){
+                            alert(data)
+                        },
+                        error: function(data){
+                            console.log(data)
+                        }
+                      });
+                      document.getElementById('message-input').value = ''
+                    });
+                  </script>
+            </aside>
         </div>
     </div>
 

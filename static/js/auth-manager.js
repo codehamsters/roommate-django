@@ -167,5 +167,5 @@ loginPasswordField.addEventListener('input', () => {
 
 //Showing the loader on form submit:
 for(let i = 0; i < forms.length; i++){
-    forms[i].addEventListener('submit', showLoader);
+    forms[i].addEventListener('submit', showLoader);    
 }
