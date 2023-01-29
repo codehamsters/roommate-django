@@ -74,8 +74,10 @@ def authentication(request): #restricts user if already logged in
         username=request.POST['username']
         email=request.POST['email']
         if get_user_model().objects.filter(username=username).exists:
+            messages.error(request, 'An error occurred')
             return HttpResponse('<div style="color: red">Username already in use</div>')
         if get_user_model().objects.filter(email=email).exists:
+            messages.error(request, 'An error occurred')
             return HttpResponse('<div style="color: red">E-Mail already in use</div>')
     if user.is_authenticated:
         return redirect('/')
