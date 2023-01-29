@@ -81,9 +81,6 @@
                                     let temp="<div class='message recieved'><div class='body'>"+response.messages[key].value+"</div><span class='timestamp'>"+response.messages[key].date+"</span></div>";
                                     $("#chat-messages").append(temp);
                                 }
-                            },
-                            error: function(response){
-                                alert('An error occured')
                             }
                         });
                     },1000);
@@ -96,17 +93,17 @@
                     <div class="message sent"><div class="body">Sent</div><span class="timestamp">00:00AM</span></div>
                     <div class="message recieved"><div class="body">Recieved</div><span class="timestamp">00:00AM</span></div>
                 </div>
-                <form id="message-input-area" action="/send" method="POST">
+
+                <form id="message-input-area" method="POST" action="/send"">
                     {% csrf_token %}
-                    <input type="hidden" name="room_id" id="room_id" value="{room_details.id}">
+                    <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}">
                     <input type="text" id="message-input" name="message-input" placeholder="Type your message here" />
                     <button type="submit">Send</button>
                 </form>
                 <script type="text/javascript">
                     $(document).on('submit','#message-input-area',function(e){
-                      e.preventDefault();
-                  
-                      $.ajax({
+                        e.preventDefault();
+                        $.ajax({
                         type:'POST',
                         url:'/send',
                         data:{
@@ -116,13 +113,13 @@
                             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
                         },
                         success: function(data){
-                            alert(data)
+                            // alert(data)
                         },
                         error: function(data){
                             console.log(data)
                         }
-                      });
-                      document.getElementById('message-input').value = ''
+                        });
+                        document.getElementById('message-input').value = ''
                     });
                   </script>
             </aside>
@@ -155,7 +152,5 @@
 <script src="{% static 'js/menu-objects.js' %}"></script>
 <script src="{% static 'js/menu-manager.js' %}"></script>
 <script src="{% static 'js/dialog-manager.js' %}"></script>
-<script src="{% static 'js/naming-manager.js' %}"></script>
-
 
 </html>

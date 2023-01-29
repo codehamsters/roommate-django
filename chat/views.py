@@ -18,7 +18,7 @@ def create(request): #creates room
     import re
     room=request.POST["room-name-input"]
     room=room.replace("/",'//')
-    allowed= r'^[_.- A-Z0-9a-z]*$'
+    allowed= r'^[_. A-Z0-9a-z]*$'
     if re.match(allowed, room)==None or len(room)>25:
         return redirect('/')
     else:
@@ -118,14 +118,18 @@ def room(request,room1):
     })
 
 def send(request):
-    message=request.POST["message-input"]
+    # print(request.POST)
+    message=request.POST["message"]
+    # print("===========")
+    # print(request.)
+    # print("===========")
     # username=request.POST['username']
     room_id=request.POST['room_id']
     
     # new_message=Message.objects.create(value=message, user=username, room= room_id)
     new_message=Message.objects.create(value=message, room= room_id)
     new_message.save()
-    return HttpResponse('Message sent successfully')
+    return 
 
 def getMessages(request, room1):
     room_details=Room.objects.get(name=room1)
