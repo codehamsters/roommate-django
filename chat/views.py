@@ -107,3 +107,8 @@ def check_email(request):
             return HttpResponse('<div style="color: red">E-Mail already in use</div>')
         else:
             return HttpResponse()
+        
+def getMessages(request, room):
+    room_details=Room.objects.get(name=room)
+    messages=Message.objects.filter(room=room_details.id)
+    return JsonResponse({"messages":list(messages.values())})
