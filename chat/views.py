@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import get_user_model
-from .models import Room
+from .models import Room,Message
 
 # Create your views here.
 
@@ -18,7 +18,7 @@ def create(request): #creates room
     import re
     room=request.POST["room-name-input"]
     room=room.replace("/",'//')
-    allowed= r'^[_.- A-Z0-9a-z]*$'
+    allowed= r'^[_. A-Z0-9a-z]*$'
     if re.match(allowed, room)==None or len(room)>25:
         return redirect('/')
     else:
@@ -27,7 +27,7 @@ def create(request): #creates room
         else:
             new_room=Room.objects.create(name=room)
             new_room.save()
-            return redirect('/')
+            return redirect('/'+room+"/")
         
 def register(request): #register user
     if request.method=='POST':
@@ -107,8 +107,46 @@ def check_email(request):
             return HttpResponse('<div style="color: red">E-Mail already in use</div>')
         else:
             return HttpResponse()
+<<<<<<< HEAD
         
 def getMessages(request, room):
     room_details=Room.objects.get(name=room)
     messages=Message.objects.filter(room=room_details.id)
     return JsonResponse({"messages":list(messages.values())})
+=======
+
+def room(request,room1):
+    rooms=reversed(Room.objects.all())
+    room_details=Room.objects.get(name=room1)
+    return render(request , 'main.html', {
+        'room_details':room_details,
+        'rooms':rooms,
+        'room1':room1
+    })
+
+def send(request):
+    # print(request.POST)
+    message=request.POST["message"]
+    # print("===========")
+    # print(request.)
+    # print("===========")
+    # username=request.POST['username']
+    room_id=request.POST['room_id']
+    
+    # new_message=Message.objects.create(value=message, user=username, room= room_id)
+    new_message=Message.objects.create(value=message, room= room_id)
+    new_message.save()
+    return 
+
+def getMessages(request, room1):
+    room_details=Room.objects.get(name=room1)
+    messages=Message.objects.filter(room=room_details.id)
+    return JsonResponse({"messages":list(messages.values())})
+
+def checkview(request):
+    room1=request.POST['open-room-id']
+    # if room1 not in request.POST:
+    #     return redirect('/')
+    # print(request.build_absolute_uri())
+    return redirect('/'+room1)
+>>>>>>> 27c675eabaf034d7a8deaaad35c7fb7912de8c8f
