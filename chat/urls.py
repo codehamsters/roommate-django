@@ -10,5 +10,9 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('check_username', views.check_username, name='check_username'),
     path('check_email', views.check_email, name='check_email'),
+    path('send', views.send, name='send'),
+    path("getMessages/<str:room1>/",views.getMessages, name='room'),
+    path("<str:room1>/",views.room, name='room'),
+    path('checkview', views.checkview, name='checkview'),
     
 ]
