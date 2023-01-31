@@ -107,13 +107,13 @@ def check_email(request):
             return HttpResponse('<div style="color: red">E-Mail already in use</div>')
         else:
             return HttpResponse()
-<<<<<<< HEAD
+# <<<<<<< HEAD
         
 def getMessages(request, room):
     room_details=Room.objects.get(name=room)
     messages=Message.objects.filter(room=room_details.id)
     return JsonResponse({"messages":list(messages.values())})
-=======
+# =======
 
 def room(request,room1):
     rooms=reversed(Room.objects.all())
@@ -149,4 +149,4 @@ def checkview(request):
     #     return redirect('/')
     # print(request.build_absolute_uri())
     return redirect('/'+room1)
->>>>>>> 27c675eabaf034d7a8deaaad35c7fb7912de8c8f
+# >>>>>>> 27c675eabaf034d7a8deaaad35c7fb7912de8c8f
