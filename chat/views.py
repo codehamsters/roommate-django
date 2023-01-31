@@ -145,8 +145,4 @@ def getMessages(request, room1):
 
 def checkview(request):
     room1=request.POST['open-room-id']
-    # if room1 not in request.POST:
-    #     return redirect('/')
-    # print(request.build_absolute_uri())
     return redirect('/'+room1)
-# >>>>>>> 27c675eabaf034d7a8deaaad35c7fb7912de8c8f
