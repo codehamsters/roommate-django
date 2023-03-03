@@ -7,9 +7,9 @@ const isRoomNameWrong = (roomName) => {
     }
     
     for(let i = 0; i < roomName.length; i++){
-        let ascii = roomName.charCodeAt(i)
+        let ascii = roomName.charCodeAt(i);
         if( ascii >= 65 && ascii <= 90 ){   //CAPTIAL LETTERS
-            sssssssssss
+            
         }else if( ascii >= 97 && ascii <= 122){ //CURSIVE LETTERS
 
         }else if( ascii >= 48 && ascii <= 57){  //DIGITS

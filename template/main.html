@@ -89,16 +89,21 @@
                 <div class="room-title-bar">
                     Roomname
                 </div>
+                <div id="chat-background-container">
+                    <div class="rotated default parent">
+                        <div class="image"></div>
+                    </div>
+                </div>
                 <div class="chats" id="chat-messages">
                     <div class="message sent"><div class="body">Sent</div><span class="timestamp">00:00AM</span></div>
                     <div class="message recieved"><div class="body">Recieved</div><span class="timestamp">00:00AM</span></div>
                 </div>
 
-                <form id="message-input-area" method="POST" action="/send"">
+                <form id="message-input-area" method="POST" action="/send">
                     {% csrf_token %}
                     <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}">
                     <input type="text" id="message-input" name="message-input" placeholder="Type your message here" />
-                    <button type="submit">Send</button>
+                    <button type="submit" class="send"><i class="fa fa-send"></i></button>
                 </form>
                 <script type="text/javascript">
                     $(document).on('submit','#message-input-area',function(e){
@@ -152,5 +157,7 @@
 <script src="{% static 'js/menu-objects.js' %}"></script>
 <script src="{% static 'js/menu-manager.js' %}"></script>
 <script src="{% static 'js/dialog-manager.js' %}"></script>
+<script src="{% static 'js/webcompsmanager.js' %}"></script>
+
 
 </html>

@@ -6,6 +6,12 @@ let roomNameInput = document.getElementById("room-name-input");
 let createRoomBtn = document.getElementById("create-room-btn");
 let newRoomDialogErrorLine = document.querySelector("#new-room-dialog div.error-line");
 
+let rotatedDefaultChatBackground = document.querySelector("#chat-background-container div.rotated.default.parent div.image");
+
+document.addEventListener("readystatechange", async () => {
+        rotatedDefaultChatBackground.style.backgroundImage = await getDefaultChatBackgroundValue();
+})
+
 moreBtn.addEventListener('click', (evt) => {
     
     //If a menu is already open

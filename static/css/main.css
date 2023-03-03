@@ -175,10 +175,46 @@ aside.room div.room-title-bar{
     height: 82px;
     background: rgba(var(--strong-bg), 0.8);
     border-bottom: 2px solid rgb(255, 255, 255, 0.1) ;
-    
+    backdrop-filter: blur(20px);
 }
 
-aside.room div.chats{
+#chat-background-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+#chat-background-container div.parent{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+#chat-background-container div.parent div.image{
+    position: absolute;
+}
+
+#chat-background-container div.parent.rotated div.image{
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    right: -100%;
+    bottom: -100%;
+    transform: rotate(-45deg);
+    z-index: 0;
+}
+
+#chat-background-container div.parent.default div.image{
+    background-repeat: repeat;
+    background-size: 350px;
+}
+
+#chat-messages{
     position: absolute;
     top: 0;
     left: 0;
@@ -187,9 +223,11 @@ aside.room div.chats{
     padding: 90px 20px;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 
-aside.room div.chats div.message{
+
+#chat-messages div.message{
     padding: 10px;
     max-width: 50%;
     align-items: center;
@@ -197,54 +235,65 @@ aside.room div.chats div.message{
     margin: 5px 0;
 }
 
-aside.room div.chats div.message.recieved{
+#chat-messages div.message.recieved{
     background: rgb(var(--strong-bg));
     color: rgb(var(--strong-fg));
     align-self: flex-start;
 }
 
-aside.room div.chats div.message.sent{
+#chat-messages div.message.sent{
     background: rgb(var(--accent-primary));
     color: rgb(255, 255, 255);
     align-self: flex-end;
 }
 
-aside.room div.chats div.message .timestamp{
+#chat-messages div.message .timestamp{
     display: block;
     font-size: 12px;
 }
 
-aside.room div.chats div.message.sent .timestamp{
+#chat-messages div.message.sent .timestamp{
     text-align: right;
     color: rgb(210, 210, 210);
 }
 
-aside.room div.chats div.message.recieved .timestamp{
+#chat-messages div.message.recieved .timestamp{
     text-align: left;
     color: rgb(var(--pale-fg));
 }
 
 #message-input-area{
     position: absolute;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    background: rgb(var(--strong-bg), 0.8);
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background: rgba(var(--bg), 0.7);
     backdrop-filter: blur(10px);
-    border-radius: 6px;
+    border-radius: 8px;
     display: grid;
+    column-gap: 10px;
     grid-template-columns: auto 80px;
-    border: 1px solid rgba(var(--fg), 0.2);
-    border-top: 1px solid rgba(var(--strong-fg), 0.1);
+    border: 1px solid rgba(var(--fg), 0.15);
+    border-top: 1px solid rgba(var(--fg), 0.25);
     padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 #message-input{
-    height: 36px;
-    border-radius: 4px;
-    border: 1px solid rgba(var(--fg), 0.2);
+    height: 42px;
+    border-radius: 6px;
+    border: 1px solid rgba(var(--fg), 0.1);
     border-top: 1px solid rgba(var(--strong-fg), 0.1);
     color: white;
-    background: rgb(var(--strong-bg));
+    background: rgb(var(--weak-bg));
+    padding-left: 10px;
+    font-size: 16px;
+}
 
+#message-input-area button.send{
+    border-radius: 6px;
+    font-size: 18px;
+    background: rgb(var(--accent-primary));
+    color: white;
+    border: none;
 }
