@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zjtpz2s3x+qwi8f1(y4xst_hoy_n-ibb+yd%%e&rax&_5bo=m7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [ '127.0.0.1','roommateweb.xyz', 'www.roommateweb.xyz', '52.198.118.142']
 
