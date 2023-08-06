@@ -13,4 +13,3 @@ This is a simple Tic-Tac-Toe game made using python.
 ## Step 5
 ```Open localhost link generated in your browser```
 
-###### Note :- This application is also live (http://dark-chatroom.me)
